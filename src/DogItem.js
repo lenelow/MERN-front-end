@@ -9,7 +9,7 @@ class DogItem extends Component {
           image: this.props.image || ''
         }
     }
-    handleSubmit = (e) => {
+    handleFormSubmit = (e) => {
         e.preventDefault()
         axios.get('https://dog.ceo/api/breeds/image/random', {
             params: {
@@ -38,13 +38,13 @@ class DogItem extends Component {
             <input
                 type='image'
                 value={this.state.image}
-                onChange={this.handleChange}
+                onChange={this.handleChange.bind(this)}
             />
             <div className='openCloseButtons'>
-                <button onClick={this.handleFormSubmit}>
+                <button onClick={this.handleFormSubmit.bind(this)}>
                     {submitImage}
                 </button>
-                <button onClick={this.props.onFormClose}>
+                <button onClick={this.props.onFormClose.bind(this)}>
                     Done
                 </button>
             </div>

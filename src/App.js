@@ -6,8 +6,8 @@ import DogItem from './DogItem'
 import axios from 'axios'
 
 class App extends Component {
-  constructor (props) {
-    super(props)
+  constructor () {
+    super()
 
     this.state = {
       dogs: []
@@ -83,16 +83,14 @@ class App extends Component {
         <div>
           <DogList 
             dogs={this.state.dogs}
-            onHandleCreate={this.handleCreate}
-            onHandleUpdate={this.handleUpdate} 
-            onHandleDelete={this.handleDelete}  
+            onHandleCreate={this.handleCreate.bind(this)}
+            onHandleUpdate={this.handleUpdate.bind(this)} 
+            onHandleDelete={this.handleDelete.bind(this)}
           />
         </div>
         <div>
           <DogItem
-            <div>
-              <source type='img' src={ image.dogData }></source>
-            </div> 
+              dog={this.state.image}
           />
           <DogForm />
         </div>
