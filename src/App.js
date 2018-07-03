@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import DogList from './DogList'
 import DogForm from './DogForm'
+import DogItem from './DogItem'
 import axios from 'axios'
 
 class App extends Component {
@@ -68,7 +69,7 @@ class App extends Component {
     return (
       <div className='App'>
         <header className='App-header'>
-          <h1 className='slogan'>Looking for a new best friend? We're here to help</h1>
+          <h1 className='slogan'>Want to look at some cute pups? We're here to help</h1>
           <h1 className='title'>Dog Generator</h1>
         </header>
         <DogList 
@@ -77,6 +78,7 @@ class App extends Component {
           onHandleUpdate={this.handleUpdate} 
           onHandleDelete={this.handleDelete}  
         />
+        <DogItem />
         <DogForm />
       </div>
     )

@@ -5,13 +5,13 @@ class DogItem extends Component {
         super(props)
 
         this.state = {
-          text: this.props.text || ''
+          image: this.props.image || ''
         }
     }
     handleSubmit = () => {
-        this.props.onFormSubmit({
+        this.props.handleFormSubmit({
           id: this.props.id,
-          text: this.state.text
+          image: this.state.image
         })
       }
       
@@ -20,22 +20,21 @@ class DogItem extends Component {
         this.setState({ [name]: value })
     }
     render() {
-        const submitText = this.props.id ? 'Update' : 'Create';
+        const submitImage = this.props.id ? 'Update' : 'Create';
         return (  
         <div>
-            <label>Text</label>
+            <label>Your Dog</label>
             <input
-                name='text'
-                type='text'
-                value={this.state.text}
+                type='image'
+                value={this.state.image}
                 onChange={this.handleChange}
             />
             <div className='openCloseButtons'>
-                <button onClick={this.handleSubmit}>
-                    {submitText}
+                <button onClick={this.handleFormSubmit}>
+                    {submitImage}
                 </button>
                 <button onClick={this.props.onFormClose}>
-                    Cancel
+                    Done
                 </button>
             </div>
         </div>
