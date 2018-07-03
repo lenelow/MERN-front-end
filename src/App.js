@@ -15,7 +15,13 @@ class App extends Component {
   }
 
   componentDidMount () {
-    axios.get('localhost:4001/api/dogs')
+    let origin
+    if (window.location.origin === 'http://localhost:4001') {
+      origin = 'http://localhost:4001'
+    } else {
+      origin = 'https://glacial-lowlands-96912.herokuapp.com'
+    }
+    axios.get(`${origin}/api/dogs`)
       .then(res => {
         this.setState({
           dogs: res.data
@@ -29,7 +35,7 @@ class App extends Component {
     this.setState(({dogs}) => ({
       dogs: dogs.concat(dog)
     }))
-    axios.post('localhost:4001/api/dogs', dog)
+    axios.post(`${origin}/api/dogs`, dog)
     .then(res => res.data)
     .catch(err => {
       console.error(err)
@@ -40,7 +46,7 @@ class App extends Component {
     this.setState(({dogs}) => ({
       dogs: dogs.filter(dog => dog._id !== dogId)
     }))
-    axios.delete(`localhost:4001/api/dogs/${dogId}`)
+    axios.delete(`${origin}/api/dogs/${dogId}`)
     .then(res => res.data)
     .catch(err => {
       console.error(err)
@@ -58,7 +64,7 @@ class App extends Component {
         }
       })
     }))
-    axios.put(`localhost:4001/api/dogs/${dogId}`, dog)
+    axios.put(`${origin}/api/dogs/${dogId}`, dog)
     .then(res => res.data)
     .catch(err => {
       console.error(err)
