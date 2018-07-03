@@ -88,9 +88,10 @@ class App extends Component {
           />
         </div>
         <div>
-          <DogItem
+          <div>
+            <DogForm 
               dog={this.state.image}
-          />
+            />
         </div>
       </div>
     )
