@@ -35,7 +35,7 @@ class App extends Component {
     this.setState(({dogs}) => ({
       dogs: dogs.concat(dog)
     }))
-    axios.post(`${origin}/api/dogs`, dog)
+    axios.post('localhost:4001/api/dogs', dog)
     .then(res => res.data)
     .catch(err => {
       console.error(err)
@@ -46,7 +46,7 @@ class App extends Component {
     this.setState(({dogs}) => ({
       dogs: dogs.filter(dog => dog._id !== dogId)
     }))
-    axios.delete(`${origin}/api/dogs/${dogId}`)
+    axios.delete(`localhost:4001/api/dogs/${dogId}`)
     .then(res => res.data)
     .catch(err => {
       console.error(err)
@@ -64,7 +64,7 @@ class App extends Component {
         }
       })
     }))
-    axios.put(`${origin}/api/dogs/${dogId}`, dog)
+    axios.put(`localhost:4001/api/dogs/${dogId}`, dog)
     .then(res => res.data)
     .catch(err => {
       console.error(err)
