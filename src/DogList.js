@@ -11,8 +11,8 @@ class DogList extends Component {
         key={dog._id}
         text={dog.text}
         onHandleCreate={this.props.onHandleCreate}
-        onHandleUpdate={this.props.onHandleUpdate} 
-        onHandleDelete={this.props.onHandleDelete} 
+        onHandleUpdate={this.props.onHandleUpdate}
+        onHandleDelete={this.props.onHandleDelete}
       />
     ))
     return (

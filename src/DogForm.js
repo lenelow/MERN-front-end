@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import FormValue from './FormValue'
+import './DogForm.css'
+import './normalize.css'
 
 class DogForm extends Component {
   constructor (props) {
@@ -34,9 +37,9 @@ class DogForm extends Component {
           )
       } else {
           return(
-              <div>
+              <div className='button'>
                 <button onClick={this.handleFormOpen}>
-                   Generate Dog 
+                  Generate Dog 
                 </button>
               </div>
           )

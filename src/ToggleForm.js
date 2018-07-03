@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import DogForm from '../DogForm'
-import DogItem from '../DogItem'
+import DogForm from './DogForm'
+import DogItem from './DogItem'
 
 class ToggleForm extends Component {
     constructor (props) {
