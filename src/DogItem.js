@@ -17,13 +17,14 @@ class DogItem extends Component {
                 image: this.state.image
               }
         })
-      .then((res) => {
-          this.props.setDog(res.data.dogs[0].dog, this.state.image)
-          this.props.history.push('/dogs')
-      })
-      .catch((err) => {
+        .then((res) => {
+          this.setState({
+              image: res.data.message
+          })
+        })
+        .catch((err) => {
         console.log(err)
-      })
+        })
     }  
     handleChange = (e) => {
         const { name, value } = e.target
