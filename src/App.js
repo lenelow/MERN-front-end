@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './App.css'
 import DogList from './DogList'
 import DogForm from './DogForm'
-import DogItem from './DogItem'
 import axios from 'axios'
 
 class App extends Component {
@@ -92,7 +91,6 @@ class App extends Component {
           <DogItem
               dog={this.state.image}
           />
-          <DogForm />
         </div>
       </div>
     )
