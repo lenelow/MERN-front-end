@@ -23,16 +23,44 @@ class App extends Component {
       })
   }
 
-  handleCreate () {
-
+  handleCreate = (dog) => {
+    this.setState(({dogs}) => ({
+      dogs: dogs.concat(dog)
+    }))
+    axios.post('localhost:4001/api/dogs', dog)
+    .then(res => res.data)
+    .catch(err => {
+      console.error(err)
+    })
   }
 
-  handleDelete () {
-
+  handleDelete = (dogId) => {
+    this.setState(({dogs}) => ({
+      dogs: dogs.filter(dog => dog._id !== dogId)
+    }))
+    axios.delete(`localhost:4001/api/dogs/${dogId}`)
+    .then(res => res.data)
+    .catch(err => {
+      console.error(err)
+    })
   }
 
-  handleUpdate () {
-
+  handleUpdate = (dogId, dog) => {
+    this.setState(({dogs}) => ({
+      dogs: dogs.map(picture => {
+        if (dog_id === dogId) {
+          picture = dog
+          return picture 
+        } else {
+          return picture
+        }
+      })
+    }))
+    axios.put(`localhost:4001/api/dogs/${dogId}`, dog)
+    .then(res => res.data)
+    .catch(err => {
+      console.error(err)
+    })
   }
 
   render () {
@@ -42,7 +70,12 @@ class App extends Component {
           <h1>Looking for a new best friend? We're here to help</h1>
           <h1 className='title'>Dog Generator</h1>
         </header>
-        <DogList dogs={this.state.dogs} />
+        <DogList 
+          dogs={this.state.dogs}
+          onHandleCreate={this.handleCreate}
+          onHandleUpdate={this.handleUpdate} 
+          onHandleDelete={this.handleDelete}  
+        />
       </div>
     )
   }

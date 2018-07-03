@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DogItem from './DogItem'
+import ToggleForm from './ToggleForm'
 
 class DogList extends Component {
   constructor (props) {
@@ -7,11 +7,19 @@ class DogList extends Component {
   }
   render () {
     const dogs = this.props.dogs.map(dog => (
-      <DogItem
+      <ToggleForm
         key={dog._id}
         text={dog.text}
+        onHandleCreate={this.props.onHandleCreate}
+        onHandleUpdate={this.props.onHandleUpdate} 
+        onHandleDelete={this.props.onHandleDelete} 
       />
     ))
+    return (
+      <div>
+        {dogs}
+      </div>
+    )
   }
 }
 
