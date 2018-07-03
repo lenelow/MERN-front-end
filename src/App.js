@@ -48,7 +48,7 @@ class App extends Component {
   handleUpdate = (dogId, dog) => {
     this.setState(({dogs}) => ({
       dogs: dogs.map(picture => {
-        if (dog_id === dogId) {
+        if (dog._id === dogId) {
           picture = dog
           return picture 
         } else {
