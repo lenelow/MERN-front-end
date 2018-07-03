@@ -73,19 +73,29 @@ class App extends Component {
 
   render () {
     return (
-      <div className='App'>
-        <header className='App-header'>
-          <h1 className='slogan'>Want to look at some cute pups? We're here to help</h1>
-          <h1 className='title'>Dog Generator</h1>
-        </header>
-        <DogList 
-          dogs={this.state.dogs}
-          onHandleCreate={this.handleCreate}
-          onHandleUpdate={this.handleUpdate} 
-          onHandleDelete={this.handleDelete}  
-        />
-        <DogItem />
-        <DogForm />
+      <div>
+        <div className='App'>
+          <header className='App-header'>
+            <h1 className='slogan'>Want to look at some cute pups? We're here to help</h1>
+            <h1 className='title'>Dog Generator</h1>
+          </header>
+        </div>
+        <div>
+          <DogList 
+            dogs={this.state.dogs}
+            onHandleCreate={this.handleCreate}
+            onHandleUpdate={this.handleUpdate} 
+            onHandleDelete={this.handleDelete}  
+          />
+        </div>
+        <div>
+          <DogItem
+            <div>
+              <source type='img' src={ dog.image }></source>
+            </div> 
+          />
+          <DogForm />
+        </div>
       </div>
     )
   }
