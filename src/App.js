@@ -91,7 +91,7 @@ class App extends Component {
         <div>
           <DogItem
             <div>
-              <source type='img' src={ dog.image }></source>
+              <source type='img' src={ image.dogData }></source>
             </div> 
           />
           <DogForm />

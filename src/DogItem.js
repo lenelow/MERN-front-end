@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 class DogItem extends Component {
     constructor(props) {
@@ -8,13 +9,22 @@ class DogItem extends Component {
           image: this.props.image || ''
         }
     }
-    handleSubmit = () => {
-        this.props.handleFormSubmit({
-          id: this.props.id,
-          image: this.state.image
+    handleSubmit = (e) => {
+        e.preventDefault()
+        axios.get('https://dog.ceo/api/breeds/image/random', {
+            params: {
+                id: this.props.id,
+                image: this.state.image
+              }
         })
-      }
-      
+      .then((res) => {
+          this.props.setDog(res.data.dogs[0].dog, this.state.image)
+          this.props.history.push('/dogs')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    }  
     handleChange = (e) => {
         const { name, value } = e.target
         this.setState({ [name]: value })
