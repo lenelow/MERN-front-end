@@ -1,54 +1,27 @@
 import React, { Component } from 'react'
+import DogForm from './DogForm'
+import './DogItem.css'
+import './normalize.css'
 import axios from 'axios'
 
 class DogItem extends Component {
-    constructor(props) {
-        super(props)
+    constructor () {
+        super()
 
-        this.state = {
-          image: this.props.image || ''
-        }
     }
-    handleFormSubmit = (e) => {
-        e.preventDefault()
-        axios.get('https://dog.ceo/api/breeds/image/random', {
-            params: {
-                id: this.props.id,
-                image: this.state.image
-              }
-        })
-        .then((res) => {
-          this.setState({
-              image: res.data.message
-          })
-        })
-        .catch((err) => {
-        console.log(err)
-        })
-    }  
-    handleChange = (e) => {
-        const { name, value } = e.target
-        this.setState({ [name]: value })
+
+    handleDelete = () => {
+        this.props.onHandleDelete(this.props.id)
     }
-    render() {
-        const submitImage = this.props.id ? 'Update' : 'Create';
-        return (  
-        <div>
-            <label>Your Dog</label>
-            <input
-                type='image'
-                value={this.state.image}
-                onChange={this.handleChange.bind(this)}
-            />
-            <div className='openCloseButtons'>
-                <button onClick={this.handleFormSubmit.bind(this)}>
-                    {submitImage}
-                </button>
-                <button onClick={this.props.onFormClose.bind(this)}>
-                    Done
-                </button>
+
+    render () {
+        return(
+            <div>
+                <h2>{this.props.name}</h2>
+                <img src={this.props.image}/>
+                <button onClick={this.props.onFormOpen}>Update</button>
+                <button onClick={this.handleDelete}>Delete</button>
             </div>
-        </div>
         )
     }
     

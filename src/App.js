@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
 import DogList from './DogList'
-import DogForm from './DogForm'
+import DogItem from './DogItem'
+import ToggleForm from './ToggleForm'
 import axios from 'axios'
 
 class App extends Component {
@@ -14,12 +15,7 @@ class App extends Component {
   }
 
   componentDidMount () {
-    let origin
-    if (window.location.origin === 'http://localhost:4001') {
-      origin = 'http://localhost:4001'
-    } else {
-      origin = 'https://glacial-lowlands-96912.herokuapp.com'
-    }
+    let origin = 'http://localhost:4001'
     axios.get(`${origin}/api/dogs`)
       .then(res => {
         this.setState({
@@ -31,10 +27,11 @@ class App extends Component {
   }
 
   handleCreate = (dog) => {
+    let origin = 'http://localhost:4001'
     this.setState(({dogs}) => ({
       dogs: dogs.concat(dog)
     }))
-    axios.post('localhost:4001/api/dogs', dog)
+    axios.post(`${origin}/api/dogs`, dog)
     .then(res => res.data)
     .catch(err => {
       console.error(err)
@@ -42,20 +39,22 @@ class App extends Component {
   }
 
   handleDelete = (dogId) => {
+    let origin = 'http://localhost:4001'
     this.setState(({dogs}) => ({
       dogs: dogs.filter(dog => dog._id !== dogId)
     }))
-    axios.delete(`localhost:4001/api/dogs/${dogId}`)
+    axios.delete(`${origin}/api/dogs/${dogId}`)
     .then(res => res.data)
     .catch(err => {
       console.error(err)
     })
   }
 
-  handleUpdate = (dogId, dog) => {
+  handleUpdate = (dog) => {
+    let origin = 'http://localhost:4001'
     this.setState(({dogs}) => ({
       dogs: dogs.map(picture => {
-        if (dog._id === dogId) {
+        if (dog._id === picture.id) {
           picture = dog
           return picture 
         } else {
@@ -63,7 +62,7 @@ class App extends Component {
         }
       })
     }))
-    axios.put(`localhost:4001/api/dogs/${dogId}`, dog)
+    axios.put(`${origin}/api/dogs/${dog._id}`, dog)
     .then(res => res.data)
     .catch(err => {
       console.error(err)
@@ -79,18 +78,20 @@ class App extends Component {
             <h1 className='title'>Dog Generator</h1>
           </header>
         </div>
+
         <div>
           <DogList 
             dogs={this.state.dogs}
-            onHandleCreate={this.handleCreate.bind(this)}
-            onHandleUpdate={this.handleUpdate.bind(this)} 
-            onHandleDelete={this.handleDelete.bind(this)}
+            onHandleUpdate={this.handleUpdate} 
+            onHandleDelete={this.handleDelete}
           />
         </div>
         <div>
-          <div>
-            <DogForm 
-              dog={this.state.image}
+          
+        </div>
+        <div>
+            <ToggleForm 
+              onHandleCreate={this.handleCreate}
             />
         </div>
       </div>

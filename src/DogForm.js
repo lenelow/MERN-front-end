@@ -4,46 +4,59 @@ import './DogForm.css'
 import './normalize.css'
 
 class DogForm extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
-      isOpen: false
+      image: this.props.image || '',
+      name: this.props.name || ''
     }
   }
-  handleFormOpen = () => {
-    this.setState({
-        isOpen: true
+  handleFormSubmit = () => {
+    this.props.onFormSubmit({
+      _id: this.props.id,
+      image: this.state.image,
+      name: this.state.name
     })
+  }  
+  handleChange = (e) => {
+    const { name, value } = e.target
+    this.setState({ [name]: value })
   }
-  handleFormClosed = () => {
-    this.setState({
-        isOpen: false
-    })
+  handleDelete = () => {
+      this.props.onHandleDelete(this.props.id)
   }
-  handleFormSubmit = (dog) => {
-    this.props.onFormSubmit(dog)
-    this.setState({
-        isOpen: false
-    })
-  }
-  render () {
-      if (this.stateIsOpen) {
-          return(
-              <FormValue 
-                onFormSubmit={this.handleFormSubmit}
-                onFormClose={this.handleFormClosed}  
-              />
-          )
-      } else {
-          return(
-              <div className='button'>
-                <button onClick={this.handleFormOpen}>
-                  Generate Dog 
-                </button>
-              </div>
-          )
-      }
+  render() {
+      const submitImage = this.props.id ? 'Update' : 'Create';
+      return (  
+      <div>
+          <div className='label'>
+              <label>Your Dog</label>
+          </div>
+          <label>Name</label>
+          <input
+            name='name'
+            type='text'
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+          <label>Photo</label>
+          <input
+              name='image'
+              type='text'
+              value={this.state.image}
+              onChange={this.handleChange}
+          />
+          <div className='openCloseButtons'>
+              <button onClick={this.handleFormSubmit}>
+                  {submitImage}
+              </button>
+              <button onClick={this.props.onFormClose}>
+                  Done
+              </button>
+          </div>
+      </div>
+      )
   }
 }
 

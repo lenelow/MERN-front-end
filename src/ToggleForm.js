@@ -11,14 +11,6 @@ class ToggleForm extends Component {
         }
     }
 
-    handleUpdateClick = () => {
-        this.openForm()
-    }
-
-    handleForm = () => {
-        this.closeForm()
-    }
-
     handleSubmit = (dog) => {
         this.props.onHandleCreate(dog)
         this.closeForm()
@@ -36,20 +28,13 @@ class ToggleForm extends Component {
         if (this.state.isOpen) {
             return (
                 <DogForm 
-                    id={this.props._id}
-                    text={this.props.text}
                     onFormSubmit={this.handleSubmit}
-                    onHandleForm={this.handleForm}
+                    onFormClose={this.closeForm}
                 />
             )
-
         } else {
             return(
-                <DogItem
-                    id={this.props._id}
-                    text={this.props.text}
-                    onHandleUpdateClick={this.handleUpdateClick} 
-                />
+                <button onClick={this.openForm}>Add</button>
             )
         }
     }

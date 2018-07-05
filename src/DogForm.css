@@ -7,3 +7,10 @@
 button {
     padding: 10px;
 }
+
+/* <DogItem
+                    id={this.props._id}
+                    text={this.props.text}
+                    onHandleUpdateClick={this.handleUpdateClick} 
+                    onHandleDelete={this.props.onHandleDelete}
+                /> */
