@@ -74,8 +74,7 @@ class App extends Component {
       <div>
         <div className='App'>
           <header className='App-header'>
-            <h1 className='slogan'>Want to look at some cute pups? We're here to help</h1>
-            <h1 className='title'>Dog Generator</h1>
+            <h1 className='title'>Dog List Generator</h1>
           </header>
         </div>
 
